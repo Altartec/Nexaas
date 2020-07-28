@@ -1,0 +1,65 @@
+package appclient.service;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+/**
+ * @author Edivaldo Nogueira
+ * Class used to send messages to the server.
+ */
+public class Client {
+    
+  public void start(String address, int port) {
+
+        ObjectOutputStream exit;
+        ObjectInputStream input;
+        Socket connection;
+        @SuppressWarnings("resource")
+		Scanner read = new Scanner(System.in);
+        String reference = "";
+        String xml = "";
+        try {
+            connection = new Socket(address, port);
+            System.out.println("Connected to the server " + address + ", at the  port: " + port);
+            System.out.println("Type: FINISH to end the connection.");
+            System.out.println("Enter the name of the movie to be searched -> ");
+            
+
+            //Connecting the outgoing and incoming connections.
+            exit = new ObjectOutputStream(connection.getOutputStream());
+            exit.flush();
+            input = new ObjectInputStream(connection.getInputStream());
+
+            //Reading the message sent by the server.
+            reference = (String) input.readObject();
+            
+            do {
+            	
+            	reference = read.nextLine();
+                
+                xml = Transformer.layoutRequestXML(reference);
+                
+                exit.writeObject(xml);
+                exit.flush();
+                
+                //Reading the message sent by the server.
+                xml = (String) input.readObject();
+                System.out.println("Response>> \n \n"+xml);
+                System.out.println("\n Type: FINISH to end the connection.");
+                System.out.println("\n Enter the name of the movie to be searched -> ");
+            } while (!reference.toUpperCase().equals("FINISH"));
+
+            exit.close();
+            input.close();
+            connection.close();
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.toString());
+        }
+
+    }
+
+   
+}

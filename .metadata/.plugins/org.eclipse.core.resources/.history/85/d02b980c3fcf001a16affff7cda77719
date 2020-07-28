@@ -1,0 +1,26 @@
+package appserver.service;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the payload format.
+ */
+public class Transformer {
+
+	public static String layoutResponseXML(TitleSearch titleSearch) throws NoSuchFieldException {
+
+		return null;
+	}
+
+	public static String layoutResponse(List<Movie> movies) throws NoSuchFieldException {
+
+		String transform = "<payload length" + movies.size() + ">\n";
+
+		for (Movie mv : movies) {
+			transform += "title:" + mv.getName() + "\n";
+		}
+
+		transform += "</payload>";
+
+		return transform;
+	}
+}

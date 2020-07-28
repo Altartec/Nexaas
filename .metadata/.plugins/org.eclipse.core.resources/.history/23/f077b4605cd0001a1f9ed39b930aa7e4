@@ -1,0 +1,23 @@
+package appclient.service;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the request/response format.
+ */
+public class Transformer {
+
+	public static String layoutRequestXML(String reference) throws NoSuchFieldException {
+
+		XStream xstream = new XStream(new DomDriver());
+
+		xstream.alias("Title", appclient.model.Title.class);
+
+		String xml = xstream.toXML(reference);
+
+		return xml;
+	}
+	
+}

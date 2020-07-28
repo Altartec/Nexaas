@@ -1,0 +1,63 @@
+package appserver.service;
+
+import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import appserver.model.Movie;
+import appserver.model.TitleSearch;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the payload format.
+ */
+public class Transformer {
+
+
+	public static String layoutResponseXML(TitleSearch titleSearch) throws NoSuchFieldException {
+	    	
+	    	XStream xstream = new XStream(new DomDriver());
+	    	
+	    	xstream.alias("TitleSearch",appserver.model.TitleSearch.class);
+	    	
+	    	xstream.alias("found",appserver.model.Movie.class);
+	    	
+	    	String xml = xstream.toXML(titleSearch);
+	    	
+	    	System.out.println(xml);		
+		
+		
+		return xml;
+	}
+
+	
+	
+	
+	public static String layoutResponseXML2(List<Movie> movies) throws NoSuchFieldException {
+	    	
+	    	XStream xstream = new XStream(new DomDriver());
+	    	
+	    	xstream.alias("Movies",appserver.model.Movie.class);
+	    	
+	    	String xml = xstream.toXML(movies);
+	    	
+	    	System.out.println(xml);		
+		
+		
+		return xml;
+	}
+
+	public static String layoutResponse(List<Movie> movies) throws NoSuchFieldException {
+
+		String transform = "<payload length" + movies.size() + ">\n";
+
+		for (Movie mv : movies) {
+			transform += "title:" + mv.getName() + "\n";
+		}
+
+		transform += "</payload>";
+
+		return transform;
+	}
+}

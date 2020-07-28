@@ -1,0 +1,19 @@
+package appclient;
+
+
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import appclient.service.Client;
+
+public class AppClient {
+  
+    public static void main(String[] args) {
+    	int port = 1025;
+    	String ip = "127.0.0.1";
+    	
+        
+        Client client = new Client();
+        client.start(ip, port);
+    }
+}

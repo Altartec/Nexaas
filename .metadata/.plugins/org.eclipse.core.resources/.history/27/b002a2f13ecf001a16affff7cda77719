@@ -1,0 +1,5 @@
+package appserver.model;
+
+public class TitleSearch {
+
+}

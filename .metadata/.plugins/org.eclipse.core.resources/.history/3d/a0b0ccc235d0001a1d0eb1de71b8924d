@@ -1,0 +1,78 @@
+package appserver.service;
+
+import java.util.List;
+import java.util.jar.Attributes;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import appserver.model.Movie;
+import appserver.model.TitleSearch;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the payload format.
+ */
+public class Transformer {
+
+
+	public static String layoutResponseXML(TitleSearch titleSearch) throws NoSuchFieldException {
+	    	
+	    	XStream xstream = new XStream(new DomDriver());
+	    	
+	    	xstream.alias("TitleSearch",appserver.model.TitleSearch.class);
+	    	
+	    	xstream.alias("found",appserver.model.Movie.class);
+	    	
+	    	String xml = xstream.toXML(titleSearch);
+		
+		return xml;
+	}
+
+	public void teste() {
+		try {
+		SAXParserFactory fact = SAXParserFactory.newInstance();
+		SAXParser saxParser = fact.newSAXParser();
+		
+		DefaultHandler handle = new DefaultHandler() {
+			boolean bfname = false, blname = false, bscore = false;
+			
+			public void startElements(String url, String localName,String qName,Attributes attributes) 
+			
+			throws SAXException{
+				
+				
+			}
+			
+			
+			
+			
+		}
+		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
+	
+	
+	
+
+/*	public static String layoutRequestXML(Title title) throws NoSuchFieldException {
+	    	
+	    
+		
+		
+		
+		return xml;
+	}
+	*/
+}

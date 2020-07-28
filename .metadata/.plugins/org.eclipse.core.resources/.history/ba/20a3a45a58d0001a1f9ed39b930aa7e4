@@ -1,0 +1,68 @@
+package appserver.service;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.security.PrimitiveTypePermission;
+
+import appserver.model.Title;
+import appserver.model.TitleSearch;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the payload format.
+ */
+public class Transformer {
+
+	public static String layoutResponseXML(TitleSearch titleSearch) throws NoSuchFieldException {
+
+		XStream xstream = new XStream(new DomDriver());
+
+		xstream.alias("TitleSearch", appserver.model.TitleSearch.class);
+
+		xstream.alias("found", appserver.model.Movie.class);
+
+		String xml = xstream.toXML(titleSearch);
+/*
+		XStream xstreamLeitura = new XStream(new DomDriver());
+		xstreamLeitura.addPermission(PrimitiveTypePermission.PRIMITIVES);
+		xstreamLeitura.alias("TitleSearch", appserver.model.TitleSearch.class);
+
+		xstreamLeitura.alias("found", appserver.model.Movie.class);
+
+		TitleSearch ti = (TitleSearch) xstreamLeitura.fromXML(xml);
+
+		System.out.println(ti.getTitle());
+*/
+		return xml;
+	}
+	
+	
+	public static String layoutRequestXML(String reference) throws NoSuchFieldException {
+
+		XStream xstream = new XStream(new DomDriver());
+
+		//xstream.alias("TitleSearch", appserver.model.TitleSearch.class);
+
+		//xstream.alias("found", appserver.model.Movie.class);
+
+		String xml = xstream.toXML(reference);
+
+		XStream xstreamLeitura = new XStream(new DomDriver());
+		xstreamLeitura.addPermission(PrimitiveTypePermission.PRIMITIVES);
+		xstreamLeitura.alias("reference", appserver.model.Title.class);
+
+		xstreamLeitura.alias("Title", appserver.model.Title.class);
+
+		Title title = (Title) xstreamLeitura.fromXML(xml);
+
+		System.out.println(title.getReference());
+
+		return title.getReference();
+	}
+	
+	
+	
+	
+	
+	
+}

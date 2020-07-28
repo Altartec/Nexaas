@@ -1,0 +1,13 @@
+package appclient;
+
+
+import appclient.service.Client;
+
+public class AppClient {
+  
+    public static void main(String[] args) {
+        int port = 1025;
+        Client client = new Client();
+        client.start("localhost", port);
+    }
+}

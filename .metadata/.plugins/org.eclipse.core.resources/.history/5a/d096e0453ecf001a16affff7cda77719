@@ -1,0 +1,5 @@
+package appserver.service;
+
+public class Server {
+
+}

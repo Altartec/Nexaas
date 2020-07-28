@@ -1,0 +1,34 @@
+package appserver.service;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ * @author Edivaldo Nogueira
+ * Class responsible for making the survey call.
+ */
+public class Search {
+     public String movie(String reference){
+    	 String title = ""; 	 
+    	 title = layoutRequestXML(reference);
+    	 title = layoutR
+    	 
+        URL url = null;
+        String movies = "";
+        File file = new File("C:\\imdb\\page.html");
+        try {
+            url = new URL("https://www.imdb.com/find?q="+title+"&ref_=nv_sr_sm");
+            
+          movies = new Filter().getPage(url, file,title);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+     return movies;    
+   }
+}
+    
+    

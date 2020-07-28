@@ -1,0 +1,48 @@
+package appserver.service;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.security.PrimitiveTypePermission;
+
+import appserver.model.Title;
+import appserver.model.TitleSearch;
+
+/**
+ * @author Edivaldo Nogueira Class responsible for transforming the response to
+ *         the request/response format.
+ */
+public class Transformer {
+
+	public static String layoutResponseXML(TitleSearch titleSearch) throws NoSuchFieldException {
+
+		XStream xstream = new XStream(new DomDriver());
+
+		xstream.alias("TitleSearch", appserver.model.TitleSearch.class);
+
+		xstream.alias("found", appserver.model.Movie.class);
+
+		String xml = xstream.toXML(titleSearch);
+
+		return xml;
+	}
+	
+	
+	public static String layoutRequestXML(String reference) throws NoSuchFieldException {
+
+		XStream xstreamRead = new XStream(new DomDriver());
+		xstreamRead.addPermission(PrimitiveTypePermission.PRIMITIVES);
+		xstreamRead.alias("reference", appserver.model.Title.class);
+
+		xstreamRead.alias("Title", appserver.model.Title.class);
+
+		Title title = (Title) xstreamRead.fromXML(reference);
+
+		return title.getReference();
+	}
+	
+	
+	
+	
+	
+	
+}

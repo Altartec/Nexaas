@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="com.google.j2objc.annotations.ReflectionSupport.Level"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.thoughtworks.xstream.XStream"/>
+<fullyQualifiedTypeName name="appserver.model.TitleSearch"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.SAXParserFactory"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.SAXParser"/>
+<fullyQualifiedTypeName name="org.xml.sax.helpers.DefaultHandler"/>
+<fullyQualifiedTypeName name="org.xml.sax.SAXException"/>
+<fullyQualifiedTypeName name="java.util.jar.Attributes"/>
+<fullyQualifiedTypeName name="appserver.model.Movie"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="com.thoughtworks.xstream.security.PrimitiveTypePermission"/>
+</qualifiedTypeNameHistroy>
